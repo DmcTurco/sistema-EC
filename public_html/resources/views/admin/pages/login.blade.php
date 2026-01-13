@@ -35,7 +35,7 @@
                                     </div>
                                 @endif
 
-                                <form role="form" method="POST" action="{{ route('admin.login') }}">
+                                <form role="form" method="POST" action="{{ route('login') }}">
                                     @csrf
 
                                     <label class="form-label">Correo Electrónico</label>

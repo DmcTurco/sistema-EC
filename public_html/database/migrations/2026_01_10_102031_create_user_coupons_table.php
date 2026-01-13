@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('user_coupons', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('coupon_id');
+            $table->tinyInteger('status')->default(0); // 0=no usado,1=usado
+            $table->timestamp('used_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('staff_id');
+            $table->unsignedBigInteger('product_id');
+            $table->string('intro_video_path');
+            $table->tinyInteger('status')->default(0); // 0=privado,1=publico
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->index('staff_id');
+            $table->index('product_id');
+            $table->index('status');
         });
     }
 

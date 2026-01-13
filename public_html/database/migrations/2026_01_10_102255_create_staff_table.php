@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->unsignedBigInteger('store_id')->nullable();
+            $table->tinyInteger('status')->default(1); // 1=activo,0=inactivo
+            $table->softDeletes();
             $table->timestamps();
         });
     }
