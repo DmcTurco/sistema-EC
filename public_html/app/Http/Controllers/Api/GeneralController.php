@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\General;
+use App\Models\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class GeneralController extends Controller
 {
@@ -16,7 +19,7 @@ class GeneralController extends Controller
         $validated = $request->validate(
             [
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
+                'email' => 'required|email|unique:generals,email',
                 'password' => 'required|string|min:6|confirmed',
                 'phone' => 'nullable|string|max:20',
                 'preferred_store_id' => 'nullable|exists:stores,id',
@@ -295,7 +298,7 @@ class GeneralController extends Controller
     {
         $user = $request->user();
 
-        $query = $user->orders()->with('product')->latest();
+        $query = $user->orders()->with('items.product')->latest();
 
         // Filtro por estado
         if ($request->filled('status')) {
@@ -313,12 +316,17 @@ class GeneralController extends Controller
                         return [
                             'id' => $order->id,
                             'order_number' => $order->order_number,
-                            'product' => [
-                                'id' => $order->product->id,
-                                'name' => $order->product->name,
-                                'image' => $order->product->image_url,
-                            ],
-                            'quantity' => $order->quantity,
+                            'items' => $order->items->map(function ($item) {
+                                return [
+                                    'product_id' => $item->product->id,
+                                    'product_name' => $item->product->name,
+                                    'product_image' => $item->product->image_url,
+                                    'quantity' => $item->quantity,
+                                    'price' => $item->price,
+                                    'formatted_price' => $item->formatted_price,
+                                ];
+                            }),
+                            'total_items' => $order->getTotalItems(),
                             'total_amount' => $order->total_amount,
                             'formatted_total' => $order->formatted_total,
                             'status' => $order->status_text,
