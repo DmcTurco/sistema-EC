@@ -23,7 +23,17 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-{{-- 
+
+            <li class="nav-item {{ request()->routeIs('staff.post.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('staff.post.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Publicaciones</span>
+                </a>
+            </li>
+            {{-- 
             <li class="nav-item {{ request()->routeIs('staff.products.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('staff.products.index') }}">
                     <div

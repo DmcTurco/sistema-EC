@@ -27,5 +27,6 @@ Route::prefix(MyApp::STAFF_SUBDIR)->middleware('auth:staff')->name('staff.')->gr
     })->withoutMiddleware('auth:staff');
     
     Route::get('/home', [Staff\HomeController::class, 'index'])->name('home');
+    Route::resource('post', Staff\PostController::class);
 
 });
