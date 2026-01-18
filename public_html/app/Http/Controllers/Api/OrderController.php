@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\General;
+use App\Models\Order;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GeneralController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class GeneralController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(General $general)
+    public function show(Order $order)
     {
         //
     }
@@ -42,7 +43,7 @@ class GeneralController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(General $general)
+    public function edit(Order $order)
     {
         //
     }
@@ -50,7 +51,7 @@ class GeneralController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, General $general)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -58,7 +59,7 @@ class GeneralController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(General $general)
+    public function destroy(Order $order)
     {
         //
     }

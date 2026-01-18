@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,9 +12,11 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path');
-            $table->string('condition')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string('name'); // Nombre del cupón
+            $table->text('description')->nullable();
+            $table->string('image_path'); // Imagen del cupón
+            $table->decimal('min_purchase', 10, 2)->default(0); // Compra mínima requerida
+            $table->tinyInteger('status')->default(1); // 1=activo, 0=inactivo
             $table->softDeletes();
             $table->timestamps();
         });
