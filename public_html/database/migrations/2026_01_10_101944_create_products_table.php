@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
-            $table->string('main_video_path');
-            $table->tinyInteger('status')->default(1); // 1=activo,0=inactivo
+            $table->string('sku')->nullable();
+            $table->string('image')->nullable();            // imagen del producto
+            $table->string('main_video_path')->nullable();  // video principal
+            $table->tinyInteger('status')->default(1); // 1=activo, 0=inactivo
             $table->softDeletes();
             $table->timestamps();
         });

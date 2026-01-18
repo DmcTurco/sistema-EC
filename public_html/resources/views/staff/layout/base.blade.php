@@ -2,21 +2,21 @@
 <html lang="es">
 
 <head>
-    @include('admin.inc.head')
+    @include('staff.inc.head')
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-dark position-absolute w-100"></div>
 
-    @include('admin.inc.sidebar')
+    @include('staff.inc.sidebar')
 
     <main class="main-content position-relative border-radius-lg">
-        @include('admin.inc.navbar')
+        @include('staff.inc.navbar')
 
         <div class="container-fluid py-4">
             @yield('content')
 
-            @include('admin.inc.footer')
+            @include('staff.inc.footer')
         </div>
     </main>
 
