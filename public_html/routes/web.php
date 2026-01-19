@@ -15,7 +15,7 @@ Route::prefix(MyApp::ADMINS_SUBDIR)->middleware('auth:admin')->name('admin.')->g
         return redirect()->route('admin.home');
     })->withoutMiddleware('auth:admin');
     
-    Route::get('/home', [Admin\AdminController::class, 'index'])->name('home');
+    Route::get('/home', [Admin\HomeController::class, 'index'])->name('home');
     Route::resource('products', Admin\ProductController::class);
     Route::resource('stores', Admin\StoreController::class);
     Route::resource('staff', Staff\StaffController::class);

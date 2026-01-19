@@ -18,7 +18,6 @@ class LogoutResponse implements LogoutResponseContract
      */
 
     public function toResponse($request)
-
     {
 
         return redirect(config('fortify.login') ? config('fortify.login') : route('login'));
