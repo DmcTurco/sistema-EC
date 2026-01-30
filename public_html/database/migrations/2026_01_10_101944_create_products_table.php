@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->string('sku')->nullable();
             $table->string('image')->nullable();            // imagen del producto
+            $table->string('video_thumbnail')->nullable(); // miniatura del video
             $table->string('main_video_path')->nullable();  // video principal
             $table->tinyInteger('status')->default(1); // 1=activo, 0=inactivo
             $table->softDeletes();

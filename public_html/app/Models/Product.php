@@ -9,18 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class Product extends Model
 {
-    use SoftDeletes,Notifiable,SoftDeletes;
+    use SoftDeletes, Notifiable, SoftDeletes;
 
-    protected $fillable = [
-        'name', 
-        'description', 
-        'price', 
-        'stock', 
-        'sku', 
-        'image', 
-        'main_video_path', 
-        'status'
-    ];
+    protected $fillable = ['name', 'description', 'price', 'stock', 'sku', 'image', 'main_video_path', 'video_thumbnail', 'status'];
 
     protected $casts = [
         'price' => 'decimal:2',
@@ -75,9 +66,7 @@ class Product extends Model
 
     public function getStatusBadgeAttribute()
     {
-        return $this->status === self::STATUS_ACTIVE 
-            ? '<span class="badge badge-success">Activo</span>' 
-            : '<span class="badge badge-secondary">Inactivo</span>';
+        return $this->status === self::STATUS_ACTIVE ? '<span class="badge badge-success">Activo</span>' : '<span class="badge badge-secondary">Inactivo</span>';
     }
 
     public function getImageUrlAttribute()
@@ -166,5 +155,23 @@ class Product extends Model
     public function hasStock($quantity = 1)
     {
         return $this->stock >= $quantity;
+    }
+
+    public function getVideoThumbnailUrlAttribute()
+    {
+        if (!$this->video_thumbnail) {
+            return asset('images/video-placeholder.png');
+        }
+
+        if (filter_var($this->video_thumbnail, FILTER_VALIDATE_URL)) {
+            return $this->video_thumbnail;
+        }
+
+        return Storage::url($this->video_thumbnail);
+    }
+
+    public function getHasVideoAttribute()
+    {
+        return !empty($this->main_video_path);
     }
 }
