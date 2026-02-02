@@ -146,6 +146,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard -->
     <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.1.0') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -94,12 +94,12 @@
                                     {!! $post->status_badge !!}
                                 </div>
                                 <div class="d-flex gap-2 justify-content-md-end">
-                                    <a href="{{ route('staff.posts.edit', $post) }}"
+                                    <a href="{{ route('staff.post.edit', $post) }}"
                                         class="btn btn-warning btn-sm px-2" data-bs-toggle="tooltip" title="Editar">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('staff.posts.destroy', $post) }}" method="POST"
+                                    <form action="{{ route('staff.post.destroy', $post) }}" method="POST"
                                         class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')

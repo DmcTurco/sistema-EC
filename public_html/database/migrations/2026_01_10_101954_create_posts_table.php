@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('staff_id');
             $table->unsignedBigInteger('product_id');
             $table->string('intro_video_path');
+            $table->string('thumbnail_path');
             $table->tinyInteger('status')->default(0); // 0=privado,1=publico
             $table->integer('views')->default(0); // Contador de vistas
             $table->integer('sales')->default(0); // Contador de ventas
