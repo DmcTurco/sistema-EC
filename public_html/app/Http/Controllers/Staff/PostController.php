@@ -37,6 +37,7 @@ class PostController extends Controller
         }
 
         $posts = $query->latest()->paginate(12)->withQueryString();
+        Log::info("message",['posts',$posts]);
 
         return view('staff.pages.post.index', compact('posts'));
     }
